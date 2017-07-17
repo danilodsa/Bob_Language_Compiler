@@ -1,0 +1,13 @@
+class foo
+{
+    a,b;
+    static last;
+    static get_last() ;
+}
+
+foo::foo(aa,bb)
+{
+    a = aa; b = bb;
+    last = this;
+    return this;
+}

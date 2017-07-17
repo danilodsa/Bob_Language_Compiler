@@ -1,0 +1,25 @@
+get_a()
+    {
+    return a;
+}
+
+foo::set_a(aa)
+    {
+    a = 2;
+}
+
+foo::count(; i)
+{
+    for (i = a; i <= b; ++i)
+        print (i, "\n");
+}
+
+main(; foo1, foo2)
+{
+    foo1 = new foo (1, 2);      // create a object of class foo
+    foo2 = new foo (11, 22);    // and another
+    print ("fool counting\n");   // ask the first to count
+    foo1 ->count ();
+    print ("foo2 counting\n");     // ask the second to count
+    foo2 ->count ();
+  }

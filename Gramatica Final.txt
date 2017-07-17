@@ -1,0 +1,58 @@
+Goal -> definitions-list
+definitions-list -> def R-definitions-list
+R-definitions-list -> definitions-list | LAMBDA
+def -> class-def | function-def
+class-def -> class IDENT class-base { member-def-list }
+class-base -> : IDENT | LAMBDA
+member-def-list -> member-def R-member-def-list
+R-member-def-list -> member-def-list | LAMBDA              
+member-def -> op-static R-member-def
+R-member-def -> var-name-list ; | IDFUNC ( op-formal-arg-list ) ;
+op-static -> static | LAMBDA
+var-name-list -> IDENT op-vector R-var-name-list
+R-var-name-list -> , var-name-list | LAMBDA                        
+op-formal-arg-list -> formal-arg-list | LAMBDA
+formal-arg-list -> IDENT R-formal-arg-list
+R-formal-arg-list -> , formal-arg-list | LAMBDA                       
+function-def -> op-class-owner IDFUNC ( op-parameters ) { statement-list }
+op-class-owner -> IDENT :: | LAMBDA
+op-parameters -> op-formal-arg-list op-temp-list
+op-temp-list -> ; temp-list | LAMBDA
+temp-list -> IDENT R-temp-list
+R-temp-list -> , temp-list | LAMBDA
+statement-list -> statement statement-list | LAMBDA
+statement -> if ( exp ) statement op-else | while ( exp ) statement
+statement -> do statement while ( exp ) ;  | { statement-list } | op-expression ;
+statement -> for ( exp ; exp ; exp ) statement | break ; | continue ;
+statement -> return op-expression ; 
+op-else -> else statement | LAMBDA
+op-expression -> exp | LAMBDA
+op-arguments -> arg-list | LAMBDA
+arg-list -> valor R-arg-list               //Wallace alterou
+R-arg-list -> , arg-list | LAMBDA
+lvalue -> IDENT op-vector
+exp -> atrib R-exp
+R-exp -> , atrib R-exp | LAMBDA
+atrib -> or R-atrib
+R-atrib -> = or R-atrib | LAMBDA
+or -> and R-or
+R-or -> TKbarra and R-or | LAMBDA
+and -> rel R-and
+R-and -> && rel R-and | LAMBDA
+rel -> soma R-rel 
+R-rel -> == soma | != soma | < soma | <= soma | > soma | >= soma | LAMBDA
+soma -> mult R-soma
+R-soma -> + mult R-soma | - mult R-soma | LAMBDA 
+mult -> uno R-mult
+R-mult -> * uno R-mult | / uno R-mult | % uno R-mult | LAMBDA  
+uno -> + uno | - uno | ! uno | ++ lvalue | -- lvalue | pos
+pos -> 	IDENT pos-pos | valor
+pos-pos -> ini-vector R-pos | R-var-name 
+R-ini-vector -> INT ] | exp ] 
+R-pos -> ++ | -- | LAMBDA?
+valor -> ( exp ) | new IDFUNC ( op-arguments ) 
+valor -> IDFUNC ( op-arguments ) 
+valor -> INT | FLOAT | STRING | nil
+op-vector -> [ INT ] | LAMBDA 
+R-var-name -> TKSETA IDFUNC ( op-arguments )
+ini-vector -> [ R-ini-vector | LAMBDA

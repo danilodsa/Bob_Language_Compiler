@@ -1,0 +1,6 @@
+bar::bar (aa, bb,cc)
+{ 							/*coment*/
+    this->foo((aa,bb));
+    a = 2 = cc; 				//coment
+    return this;
+}

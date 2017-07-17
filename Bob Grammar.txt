@@ -1,0 +1,139 @@
+//
+//  programa segue o "modelo" da linguagem C,
+// é uma sequencia de fefinicoes (classes e/ou funcoes).
+//
+// O programa inicia com a chamada da funcao main
+//
+//  Considere a biblioteca padrao contendo 3 funcoes:
+// 
+// print("Exemplo: ", a, " e ", 7, "/n");
+// i = input_int("Prompt:");
+// str == input_str("Prompt:");
+//
+
+<programa>* ::= <definitions-list>
+
+<definitions-list> ::= <def> <definitions-list> | <def>
+
+<def> ::= <class-def> | <function-def>
+
+//    Class Definition
+
+<class-def> ::= "class" <class-name> <class-base>
+                "{" <member-def-list> "}"
+
+<class-base> ::= ":" <base-class-name> 
+             |   <lambda>
+
+<member-def-list> ::= <member-def> <member-def-list>
+              | <member-def> 
+              
+<class-name> ::= IDENT
+<base-class-name> ::= IDENT
+
+//    Member Definition
+
+<member-def> ::= <var-name-list> ";"
+            | "static" <var-name-list> ";"
+            |  <function-name> "(" <op-formal-arg-list> ")" ";"
+            | "static" <function-name> "(" <op-formal-arg-list> ")" ";"
+
+<var-name-list> ::= <var-name><op-vector> "," <var-name-list>
+             | <var-name><op-vector>
+
+<op-vector> ::= "[" <int> "]" | <lambda>             
+             
+<op-formal-arg-list> ::= <formal-arg-list>
+              | <lambda>
+
+<formal-arg-list> ::= <var-name> "," <formal-arg-list>
+             | <var-name>
+             
+<var-name> ::= IDENT           
+              
+//    Function Definition
+
+<function-def> ::= <op-class-owner> <function-name>
+       "(" <op-parameters> ")"
+        "{" <statement-list> "}"
+
+<op-class-owner> ::= <class-name> "::" | <lambda>
+
+<op-parameters> ::= <op-formal-arg-list> <op-temp-list>
+
+<op-temp-list> ::= ";" <temp-list> | <lambda>
+
+<temp-list> ::= <var-name> "," <temp-list>
+             | <var-name>
+
+<statement-list> ::= <statement> <statement-list> | <lambda>
+
+<function-name> ::= IDENT
+
+//    Statement
+
+<statement> ::= "if" "(" <exp> ")" <statement> <op-else>
+           | "while" "(" <exp> ")" <statement>
+           | "do" <statement> "while" "(" <exp> ")" ";"
+           | "for" "(" <exp> ";" <exp> ";" <exp> ")" <statement>
+           | "break" ";"
+           | "continue" ";"
+           | "return" <op-expression> ";"
+           | <op-expression> ";"
+           | "{" <statement-list> "}"
+
+<op-else> ::= "else" <statement> | <lambda>
+
+<op-expression> ::= <exp> | <lambda>
+
+//    Expression
+
+<exp> ::=  <exp> "," <exp>
+    |  <lvalue> "=" <exp>
+    |  <lvalue> "+=" <exp>
+    |  <lvalue> "-="  <exp>
+    |  <lvalue> "*=" <exp>
+    |  <lvalue> "/=" <exp>
+    |  <exp> "?" <exp> ":" <exp>
+    |  <exp> "||" <exp>
+    |  <exp> "&&" <exp>
+    |  <exp> "|" <exp>
+    |  <exp> "&" <exp>
+    |  <exp> "^" <exp>
+    |  <exp> "==" <exp>
+    |  <exp> "!=" <exp>
+    |  <exp> "<" <exp>
+    |  <exp> "<=" <exp>
+    |  <exp> ">" <exp>
+    |  <exp> ">=" <exp>
+    |  <exp> "<<" <exp>
+    |  <exp> ">>" <exp>
+    |  <exp> "+" <exp>
+    |  <exp> "-" <exp>
+    |  <exp> "*" <exp>
+    |   <exp> "/" <exp>
+    |   <exp> "%" <exp>
+    |   "!" <exp>
+    |   "~" <exp>
+    |   "++" <lvalue>"
+    |   "--" <lvalue>
+    |   <lvalue> "++"
+    |   <lvalue> "--"
+    |   "new"  <class-name> "(" <op-arguments> ")"
+    |   <exp> "(" <op-arguments> ")"
+    |   <exp> "->" <function-name> "(" <op-arguments> ")"
+    |   "(" <exp> ")"
+    |   <var-name><op-vector>
+    |   <number>
+    |   <string>
+    |   "nil" 
+
+<op-arguments> ::= <arg-list> | <lambda>
+
+<arg-list> ::= <arg-name> "," <arg-list> | <arg-name>
+    
+<lval>ue> ::= IDENT <op-vector>
+<arg-name> ::= IDENT
+<number> ::= NUM
+<int> ::= NUM
+<string> ::= STRING    

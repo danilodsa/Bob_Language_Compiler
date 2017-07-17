@@ -1,0 +1,11 @@
+class incremento{
+   topo;
+   push(x);
+   pop();
+   empty;
+}
+
+Pilha::Pilha(){    
+   a = 3;
+   return this;
+}

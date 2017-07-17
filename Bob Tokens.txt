@@ -1,0 +1,66 @@
+## palavras reservadas
+
+class x
+if x
+while x
+do x
+for x
+break x
+continue x
+return x
+else x
+static x
+new x
+nil x
+
+## separadores e operadores
+{ x
+} x
+( x
+) x
+[ x
+] x
+; x
+, x
+: x
+:: x
+? x
+= x
++= x
+-= x
+*= x
+/= x
+|| x
+&& x
+| x
+& x
+^ x
+== x
+!= x
+< x
+<= x
+>  x
+>= x
+<< x
+>> x
++ x
+- x 
+* x
+/ x
+% x
+! x
+~ x
+++ x
+-- x
+-> x
+
+## especiais
+
+IDENT      [a-zA-Z][a-zA-Z0-9]* x
+NUM        [0-9]+([.][0-9]+)?([eE][+-]?[0-9]+)?
+STRING     ["]([^"\\] | \\.)*["] x
+EOF x
+ERRO x
+
+Lembrando:  jogue fora os comentarios. Começam com \\
+até o fim da linha
